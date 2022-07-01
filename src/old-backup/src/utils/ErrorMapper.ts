@@ -1,7 +1,6 @@
-import _ from "lodash";
 import { SourceMapConsumer } from "source-map";
 
-class ErrorMapper {
+export class ErrorMapper {
   // Cache consumer
   private static _consumer?: SourceMapConsumer;
 
@@ -89,5 +88,3 @@ class ErrorMapper {
     };
   }
 }
-
-export default ErrorMapper;
