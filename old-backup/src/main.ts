@@ -11,7 +11,6 @@ declare global {
   interface CreepMemory {
     role: string;
     room: string;
-    working: boolean;
   }
 
   // Syntax for adding proprties to `global` (ex "global.log")

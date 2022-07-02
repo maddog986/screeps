@@ -1,9 +1,9 @@
 "use strict";
 
-import clear from 'rollup-plugin-clear';
-import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
-import typescript from 'rollup-plugin-typescript2';
+import resolve from '@rollup/plugin-node-resolve';
+import typescript from '@rollup/plugin-typescript';
+import clear from 'rollup-plugin-clear';
 import screeps from 'rollup-plugin-screeps';
 
 let cfg;
@@ -26,7 +26,15 @@ export default {
     clear({ targets: ["dist"] }),
     resolve({ rootDir: "src" }),
     commonjs(),
-    typescript({tsconfig: "./tsconfig.json"}),
+    typescript({
+      tsconfig: "./tsconfig.json"
+    }),
+    {
+      transform(code, id) {
+        return code.replace(/\/\*\* @class \*\//g, "\/*@__PURE__*\/");
+      }
+    },
+    // terser({ module: true, output: { comments: 'some' } }),
     screeps({config: cfg, dryRun: cfg == null})
   ]
 }
