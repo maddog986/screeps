@@ -126,7 +126,7 @@ const actions = {
           creep.memory.job = JOB.HARVEST
         }
         // Spawn is full of resources
-        else if (spawn.store.getFreeCapacity() === 0) {
+        else if (spawn.store.getFreeCapacity(RESOURCE_ENERGY) === 0) {
           creep.memory.target = creep.room.controller?.id;
           creep.memory.job = JOB.UPGRADE
         }
